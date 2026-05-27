@@ -1,0 +1,39 @@
+{
+    "jobs":[
+        {
+            "id":1,
+            "title":"Sr. React Developer",
+            "salary":"Ksh.60,000",
+            "location":"Kisii Kenya"
+
+        },
+        {
+            "id":2,
+            "title":"Frontend Developer",
+            "salary":"Ksh.40,000",
+            "location":"Migori Kenya"
+
+        },
+        {
+            "id":3,
+            "title":"Backend Developer",
+            "salary":"Ksh.55,000",
+            "location":"Kisumu Kenya"
+
+        },
+        {
+            "id":4,
+            "title":"Security Engineer",
+            "salary":"Ksh.70,000",
+            "location":"Hb Kenya"
+
+        },
+        {
+            "id":5,
+            "title":"Sr. UI/UX Designer",
+            "salary":"Ksh.30,000",
+            "location":"Kisii Kenya"
+
+        }
+    ]
+}

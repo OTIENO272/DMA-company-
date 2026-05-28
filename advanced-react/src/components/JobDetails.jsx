@@ -21,23 +21,22 @@ const JobDetails = () => {
       <p><b>Job Title:</b>{jobDetails.title}</p>
       <p><b>Salary:</b>{jobDetails.salary}</p>
       <p><b>Area Of Work:</b>{jobDetails.location}</p>
-      <p><b>Job Summary:</b>We are seeking a talented Web Developer to join our growing tech team. You will build, maintain, and optimize responsive web applications. Your work will directly impact our user experience, site performance, and digital scaling.</p>
+      <p><b>Type:</b>{jobDetails.type}</p>
+      <p><b>Job Summary:</b>{jobDetails.summary}</p>
       <button id="btn" onClick={handleApply}>Apply Now</button>
     </div>
   )
 }
 
 export default JobDetails
-
-export const jobDetailsLoader = async ({params})=>{
-
+ export const jobDetailsLoader =async({params})=>{
 
   const {id} = params;
+  const res = await fetch('http://localhost:5000/jobs/' + id)
 
-  const response = await fetch('http://localhost:5000/jobs/' + id);
-  if(!response.ok){
-    throw Error("Job Details not Found!")
+  if (!res.ok) {
+    throw new Error("Job Details Not Found");
+    
   }
-  return response.json()
-
+  return res.json();
 }

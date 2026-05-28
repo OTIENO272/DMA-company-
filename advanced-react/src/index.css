@@ -388,3 +388,21 @@ a.active {
     padding: 40px 20px;
   }
 }
+.not-found{
+  font-size: 2em;
+  color: #ca2f10;
+  text-shadow: #444;
+  font-style: italic;
+}
+.not-found button{
+  padding: 4px;
+  font-size: 32px;
+  border: 4px #df1512 solid;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.not-found button :hover{
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  color: #ca2f10;
+}

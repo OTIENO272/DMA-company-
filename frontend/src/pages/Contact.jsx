@@ -8,6 +8,7 @@ const Contact = () => {
     <div>
       <div className="contact-page">
         <h1>Contact Page</h1>
+        <p>Reach out to us,message ,call email or watsapp us.</p>
       
       </div>
       <div className="contact-btns">

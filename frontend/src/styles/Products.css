@@ -1,0 +1,105 @@
+
+/* ─── Products Page ─── */
+.products-container {
+  width: 100%;
+  min-height: calc(100vh - 78px);
+  background: #f4faf5;
+}
+
+.products-intro {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 70px 32px 90px;
+  text-align: center;
+}
+
+.products-intro h1 {
+  font-size: 46px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #1a5c28 0%, #4caf50 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 14px;
+}
+
+.products-intro > p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 56px;
+}
+
+/* ─── Card Grid ─── */
+.prdct_description {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  text-align: left;
+}
+
+/* Shared card look for every product card */
+.prdct_description > div {
+  background: #fff;
+  border: 1px solid rgba(34, 120, 50, 0.12);
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: 0 2px 16px rgba(34, 120, 50, 0.06);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.prdct_description > div:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(34, 120, 50, 0.14);
+  border-color: rgba(34, 120, 50, 0.25);
+}
+
+.prdct_description > div > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  font-size: 24px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(34, 120, 50, 0.1), rgba(76, 175, 80, 0.15));
+  margin-bottom: 20px;
+}
+
+.prdct_description > div > h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a5c28;
+  margin-bottom: 10px;
+}
+
+.prdct_description > div > p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.65;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .prdct_description {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .products-intro {
+    padding: 48px 20px 60px;
+  }
+
+  .products-intro h1 {
+    font-size: 32px;
+  }
+
+  .prdct_description {
+    grid-template-columns: 1fr;
+  }
+
+  .prdct_description > div {
+    padding: 26px 22px;
+  }
+}

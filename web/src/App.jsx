@@ -14,6 +14,8 @@ import JobsLayout from './layout/JobsLayout'
 import Jobs, { jobsLoader } from './pages/Jobs'
 import JobDetails, { jobDetailsLoader } from './components/JobDetails'
 import FormLink from './components/FormLink'
+import Login from './pages/Login'
+import SignUp from './pages/SignUp'
 
 const App = () => {
 const router =createBrowserRouter(
@@ -27,6 +29,8 @@ const router =createBrowserRouter(
         <Route path='form' element={<ContactForm />} />
       </Route>
       <Route path='jobs' element={<JobsLayout />} errorElement={<Error />} >
+      <Route path='login' element={<Login />}/>
+      <Route path='signUp' element={<SignUp />}/>
         <Route  index element={<Jobs />} loader={jobsLoader}/>
         <Route  path=':id' element={<JobDetails />} loader={jobDetailsLoader} />
         <Route path=':id/apply'  element={<FormLink />}/>

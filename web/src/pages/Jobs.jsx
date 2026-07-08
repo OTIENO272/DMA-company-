@@ -1,10 +1,27 @@
-import { Link,useLoaderData } from "react-router-dom"
+import { Link,useLoaderData, useNavigate } from "react-router-dom"
+import '../styles/Jobs.css'
 
 
 const Jobs = () => {
+  const navigate =useNavigate()
+ 
+  const Login=()=>{
+    navigate('/jobs/login')
+  }
+  const Signup=()=>{
+    navigate('/jobs/signup')
+  }
+  
+
     const jobsData = useLoaderData();
   return (
    <div className="div">
+    <div className="account">
+      <div className="acc">
+        <button onClick={Login} >Login</button>
+        <button onClick={Signup} >Sign Up</button>
+      </div>
+    </div>
          <h2>Job Vacancy</h2>
         <p>List of available roles in our company</p>
         <div className="jobs">

@@ -5,7 +5,7 @@ const  userRouter = express.Router();
 
 //routes 
 
-userRouter.post('/api/user/signup',userSignUp)
-userRouter.post('/api/user/login',userLogin)
+userRouter.post('/api/auth/signup',userSignUp)
+userRouter.post('/api/auth/login',userLogin)
 
 export default userRouter;

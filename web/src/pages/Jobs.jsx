@@ -1,13 +1,15 @@
 import { Link,useLoaderData} from "react-router-dom"
 import '../styles/Jobs.css'
+import { getJobs } from "../api/api.js";
 
 
 const Jobs = () => {
  
- 
-  
-
     const jobsData = useLoaderData();
+
+  if (!Array.isArray(jobsData)) {
+    return <p>Something went wrong loading jobs.</p>;
+  }
   return (
    <div className="div">
     
@@ -16,7 +18,7 @@ const Jobs = () => {
         <div className="jobs">
       
      {jobsData.map((job) =>{
-       return<Link  to={job.id.toString()} key={job.id}>
+       return<Link  to={job._id.toString()} key={job.id}>
 
              <h3>{job.title}</h3>
              <h2>{job.salary}</h2>
@@ -36,9 +38,8 @@ export default Jobs
 
 //use try catch ...
  export const jobsLoader = async () => {
-  const response = await fetch("http://localhost:5000/jobs");
-  if (!response.ok) {
-    throw Error("Job List Not Fount!")
-  }
-  return response.json();
+
+  const data = await getJobs();
+  return data;
+
 }

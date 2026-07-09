@@ -18,10 +18,12 @@ const getJobs=async(req,res)=>{
     try {
 
         const jobs = await Job.find()
-        res.status(200).json({jobs})
+        res.status(200).json({jobs:jobs})
         
     } catch (error) {
         res.status(500).json({msg:'Internal server error',err:error.message})
+        console.log(error.message);
+        
         
     }
 }

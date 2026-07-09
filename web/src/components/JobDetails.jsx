@@ -1,4 +1,6 @@
 import { useLoaderData, useNavigate, useParams } from "react-router"
+import { getJobDetails} from "../api/api.js"
+
 
 
 
@@ -32,14 +34,9 @@ const JobDetails = () => {
 }
 
 export default JobDetails
- export const jobDetailsLoader =async({params})=>{
+ export const jobDetailsLoader =async()=>{
 
-  const {id} = params;
-  const res = await fetch('http://localhost:5000/jobs/' + id)
-
-  if (!res.ok) {
-    throw new Error("Job Details Not Found");
-    
-  }
-  return res.json();
+    const data = await getJobDetails()
+   
+    return data;
 }

@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router"
+import { Outlet, useNavigate } from "react-router"
 
 const Admin = () => {
  const navigate =useNavigate()
   const Login=()=>{
-     navigate('/jobs/login')
+     navigate('/admin/login')
    }
  const Signup=()=>{
-    navigate('/jobs/signup')
+    navigate('/admin/signUp')
  }
   return (
     <div>
@@ -15,6 +15,10 @@ const Admin = () => {
         <button onClick={Login} >Login</button>
         <button onClick={Signup} >Sign Up</button>
       </div>
+      
+    </div>
+    <div className="admin-content-area">
+      <Outlet />
     </div>
     </div>
   )

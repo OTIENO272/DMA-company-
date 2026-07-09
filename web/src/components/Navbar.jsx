@@ -12,7 +12,9 @@ const Navbar = () => {
     navigate('/contact', { replace: true })
     closeMenu()
   }
-
+ const handleAdmin =()=>{
+  navigate('/admin')
+ }
   return (
     <div className='navbar'>
       <img src={Logo} alt="logo" className='img' />
@@ -27,7 +29,8 @@ const Navbar = () => {
       </ul>
 
       {/* desktop button */}
-      <button onClick={handleGetStarted}>Get Started</button>
+      {/* <button onClick={handleGetStarted}>Get Started</button> */}
+      <button className='admin' onClick={handleAdmin}>Admin</button>
 
       {/* hamburger — only visible on mobile via CSS */}
       <button

@@ -16,6 +16,7 @@ import JobDetails, { jobDetailsLoader } from './components/JobDetails'
 import FormLink from './components/FormLink'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
+import Admin from './pages/Admin'
 
 const App = () => {
 const router =createBrowserRouter(
@@ -23,10 +24,12 @@ const router =createBrowserRouter(
     <Route path='/' element={<RouteLayout />}>
       <Route  index  element={<Home />} />
       <Route path='products' element={<Products />} />
+      <Route path='admin' element={<Admin />} />
       <Route path='about' element={<About />} />
       <Route path='contact' element={<ContactLayout />} >
         <Route path='info' element={<ContactInfo />} />
         <Route path='form' element={<ContactForm />} />
+
       </Route>
       <Route path='jobs' element={<JobsLayout />} errorElement={<Error />} >
       <Route path='login' element={<Login />}/>

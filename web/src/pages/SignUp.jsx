@@ -7,13 +7,14 @@ import useSignup from "../hooks/useSignup"
 const SignUp = () => {
     const {register ,handleSubmit,formState:{errors,isSubmitting}} = useForm()
      
-    const {signup} =useSignup()
+    const {signup,error} =useSignup()
 
     
-    const onSubmit=async(data)=>{
+    const onSubmit = async (data) => {
+        await signup(data);
 
-        await signup(data)
-    }
+  }
+
       
 
     
@@ -25,19 +26,19 @@ const SignUp = () => {
                 required:'Username is required',
         
             })}  />
-             {errors.username &&<span className="error" >{errors.username.message}</span> }
+             {errors.username &&<span className="errors" >{errors.username.message}</span> }
 
             <label htmlFor="">Email</label>
             <input type="email" placeholder="email" {...register("email",{
                 required:'Email is required',
             })} />
-             {errors.email &&<span className="error">{errors.email.message}</span> }
+             {errors.email &&<span className="errors">{errors.email.message}</span> }
 
             <label htmlFor="">Password</label>
             <input type="password" placeholder="password"   {...register("password",{
                 required:'Password is required',
             })}  />
-             {errors.password &&<span className="error">{errors.password.message}</span> }
+             {errors.password &&<span className="errors">{errors.password.message}</span> }
 
 
             <label htmlFor="">Confirm-password</label>
@@ -46,12 +47,15 @@ const SignUp = () => {
                 validate:(value,formValues) => value ===formValues.password || 'Passwords do not match'
 
             })}/>
-            {errors.confirmPassword &&<span className="error">{errors.confirmPassword.message}</span> }
+            {errors.confirmPassword &&<span className="errors">{errors.confirmPassword.message}</span> }
             <button disabled={isSubmitting} >Sign Up</button>
             <div className="div">
                 <p>Already Have an Account ?</p>
                 <NavLink to='/jobs/login'>Login</NavLink>
             </div>
+            {error && (
+                 <span className="errors">{error}</span>
+                          ) }
         </form>
     </div>
   )

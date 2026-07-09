@@ -17,6 +17,7 @@ import FormLink from './components/FormLink'
 import Login from './pages/Login.jsx'
 import SignUp from './pages/SignUp'
 import Admin from './pages/Admin'
+import AdminError from './components/AdminError.jsx'
 
 const App = () => {
 const router =createBrowserRouter(
@@ -25,7 +26,7 @@ const router =createBrowserRouter(
       <Route  index  element={<Home />} />
       <Route path='products' element={<Products />} />
 
-      <Route path='admin' element={<Admin />} >
+      <Route path='admin' element={<Admin />}  errorElement={<AdminError />}>
           <Route path='login' element={<Login />}/>
           <Route path='signup' element={<SignUp />}/>
        </Route>

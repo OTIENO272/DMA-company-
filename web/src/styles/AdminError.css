@@ -1,0 +1,61 @@
+/* AdminError.css */
+
+.error {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+.error h3 {
+  font-size: 2rem;
+  color: #dc2626;
+  margin: 0;
+}
+
+.error p {
+  color: #6b7280;
+  font-size: 1rem;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.error button {
+  padding: 0.85rem 2rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, hwb(128 15% 8%), hsl(55, 75%, 59%));
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.error button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+}
+
+.error button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .error {
+    padding: 1.5rem;
+  }
+
+  .error h3 {
+    font-size: 1.5rem;
+  }
+
+  .error button {
+    width: 100%;
+    max-width: 280px;
+  }
+}

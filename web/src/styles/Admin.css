@@ -1,0 +1,87 @@
+/* Admin.css */
+
+.admin-content-area {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+/* Top account section */
+.account,
+.logout {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1.2rem 2rem;
+}
+
+.acc {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Shared button styling */
+.acc button,
+.logout button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+
+
+
+
+
+.acc button:last-child:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Logged-in section */
+.logout {
+  gap: 1rem;
+}
+
+.logout span {
+  font-weight: 600;
+  color: #374151;
+}
+
+.logout button {
+  background: #ef4444;
+  color: white;
+  border: none;
+}
+
+.logout button:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .account,
+  .logout {
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .acc {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .acc button,
+  .logout button {
+    width: 100%;
+  }
+
+  .logout {
+    flex-direction: column;
+    text-align: center;
+  }
+}

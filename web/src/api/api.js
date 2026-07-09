@@ -42,8 +42,10 @@ const signupApi =async({username, email, password, confirmPassword})=>{
     })
     return user.data;
    } catch (error) {
-     console.log(error.response?.data?.message || error.message)
-     throw error
+    throw new Error(
+  error.response?.data?.error || "Something went wrong",
+  { cause: error }
+);
    }
 }
 

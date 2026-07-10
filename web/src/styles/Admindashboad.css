@@ -1,0 +1,192 @@
+/* ─── AdminDashboard.css ─── */
+/* Uses the same --brand-* tokens defined globally in the main stylesheet */
+
+.dashboard {
+  margin-left: 0px; /* offsets the fixed sidebar */
+  margin-right: 380px;
+  padding: 32px 32px 60px;
+  background: linear-gradient(160deg, #eaf6ec 0%, #dcf0e1 100%);
+  min-height: 100vh;
+  width: 100%;
+}
+
+.dash-welcome {
+  font-size: 45px;
+  color: green;
+  margin-bottom: 44px;
+}
+
+.dash-welcome strong {
+  color: var(--brand-dark);
+  font-weight: 600;
+}
+
+.dashboard-body {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* ─── Sidebar: fixed, full-height, dark green theme ─── */
+.sidebar {
+  
+  
+  width: 150px;
+  height:auto;
+  display: flex;
+  flex-direction: column;
+  gap: 86px;
+  background: linear-gradient(180deg, hsl(171, 65%, 26%) 0%, hsl(134, 17%, 34%) 100%);
+  padding: 36px 18px;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
+  z-index: 50;
+  overflow-y: auto;
+  border-radius: 24px;
+  margin-right: 43px;
+}
+
+.sidebar .lnk,
+.sidebar .link-active {
+  display: block;
+  padding: 13px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #e8f4f3;
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+}
+
+.sidebar .lnk:hover {
+  background: rgba(214, 163, 24, 0.08);
+  color: #a6f391;
+}
+
+.sidebar .link-active {
+  background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-light) 100%);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(76, 175, 80, 0.35);
+}
+
+/* ─── Main content column ─── */
+.main-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ─── Job overview cards ─── */
+.dash-overview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.dash-overview > p {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--text-soft);
+  padding: 40px 0;
+  font-size: 14px;
+}
+
+.job-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(34, 120, 50, 0.15);
+  border-top: 4px solid var(--brand-primary);
+  box-shadow: 0 4px 16px rgba(34, 120, 50, 0.08);
+  padding: 22px 20px;
+  transition: box-shadow 0.18s, transform 0.18s;
+}
+
+.job-card:hover {
+  box-shadow: 0 8px 26px rgba(34, 120, 50, 0.16);
+  transform: translateY(-3px);
+}
+
+.job-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--brand-dark);
+  margin-bottom: 10px;
+}
+
+/* Salary shown as a green pill badge instead of plain colored text */
+.job-card h2 {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brand-dark);
+  background: rgba(34, 120, 50, 0.12);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.job-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ─── Outlet content area ─── */
+.content {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(34, 120, 50, 0.15);
+  border-top: 4px solid var(--brand-primary);
+  box-shadow: 0 6px 28px rgba(34, 120, 50, 0.1);
+  padding: 32px;
+  min-height: 200px;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .dash-overview {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  /* Fixed full-height sidebar doesn't work on small screens —
+     collapse back into a horizontal tab bar */
+  .dashboard {
+    margin-left: 0;
+    padding: 24px 20px 44px;
+  }
+
+  .dashboard-body {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    border-radius: 30px;
+    padding: 8px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+  }
+
+  .sidebar .lnk,
+  .sidebar .link-active {
+    flex: 1;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 24px;
+  }
+
+  .content {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dash-overview {
+    grid-template-columns: 1fr;
+  }
+}

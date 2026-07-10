@@ -1,16 +1,18 @@
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 import '../styles/Login.css'
 import {useForm} from 'react-hook-form'
 import useLogin from "../hooks/useLogin.jsx"
 
 const Login = () => {
     const {login,error} =useLogin()
+    const navigate = useNavigate()
 
     const {register,handleSubmit,formState:{errors,isSubmitting}} = useForm()
 
     const onSubmit =async(email,password)=>{
       
         await login(email,password)
+        await navigate('/admin/dashboard')
       
     }
   return (

@@ -1,4 +1,4 @@
-import './Home.css'
+import '../styles/Home.css'
 import { NavLink } from 'react-router'
 
 const Home = () => {

@@ -18,7 +18,7 @@ const Jobs = () => {
         <div className="jobs">
       
      {jobsData.map((job) =>{
-       return<Link  to={job._id.toString()} key={job.id}>
+       return<Link  to={job._id.toString()} key={job._id}>
 
              <h3>{job.title}</h3>
              <h2>{job.salary}</h2>

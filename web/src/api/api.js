@@ -30,7 +30,7 @@ const loginApi =async({email,password})=>{
     const user = await api.post('/auth/login',{
         email,password
     })
-    return user;
+    return user.data;
    } catch (error) {
        throw new Error(
   error.response?.data?.error || "Something went wrong",

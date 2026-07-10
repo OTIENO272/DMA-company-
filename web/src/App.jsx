@@ -5,7 +5,7 @@ import About from './pages/About'
 import Error from './components/Error'
 import Home from './pages/Home'
 import Products from './pages/Products'
-import { createBrowserRouter, createRoutesFromElements, Route} from 'react-router'
+import { createBrowserRouter, createRoutesFromElements, Navigate, Route} from 'react-router'
 import ContactLayout from './layout/ContactLayout'
 import ContactInfo from './components/ContactInfo'
 import ContactForm from './components/ContactForm'
@@ -18,8 +18,11 @@ import Login from './pages/Login.jsx'
 import SignUp from './pages/SignUp'
 import Admin from './pages/Admin'
 import AdminError from './components/AdminError.jsx'
+import AdminDashboard from './pages/AdminDashboard.jsx'
+import useAuthContext from './hooks/useAuthContext.jsx'
 
 const App = () => {
+  const {user} =useAuthContext()
 const router =createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<RouteLayout />}>
@@ -27,8 +30,9 @@ const router =createBrowserRouter(
       <Route path='products' element={<Products />} />
 
       <Route path='admin' element={<Admin />}  errorElement={<AdminError />}>
-          <Route path='login' element={<Login />}/>
+          <Route path='login' element={!user ? <Login /> : <Navigate to="/admin/dashboard" />}/>
           <Route path='signup' element={<SignUp />}/>
+          <Route path='dashboard' element={<AdminDashboard />} />
        </Route>
       <Route path='about' element={<About />} />
       <Route path='contact' element={<ContactLayout />} >

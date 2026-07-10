@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { Outlet, useLocation, useNavigate } from "react-router"
-import useAuthContext from "../hooks/useAuthContext"
+import useAuthContext from "../hooks/useAuthContext.jsx"
 import '../styles/Admin.css'
 
 const Admin = () => {
@@ -43,7 +43,7 @@ const Admin = () => {
       
     </div>) : (
       <div className="logout">
-        <span>Welcome{user.username}</span>
+        <span>{user.email}</span>
         <button onClick={handleLogOut}>Logout</button>
       </div>
     )}

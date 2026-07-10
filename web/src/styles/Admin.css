@@ -1,87 +1,119 @@
-/* Admin.css */
+/* ─── Admin.css ─── */
+/* Uses the same --brand-* tokens defined globally in the main stylesheet */
 
-.admin-content-area {
-  max-width: 1100px;
-  margin: 2rem auto;
-  padding: 1rem;
-}
-
-/* Top account section */
-.account,
-.logout {
+/* ─── Logged-out: Login / Signup row ─── */
+.account {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  padding: 1.2rem 2rem;
+  padding: 20px 32px 0;
 }
 
 .acc {
   display: flex;
-  gap: 1rem;
+  gap: 12px;
 }
 
-/* Shared button styling */
-.acc button,
-.logout button {
-  padding: 0.7rem 1.5rem;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-weight: 600;
+.acc button {
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: background 0.18s, color 0.18s, opacity 0.18s, transform 0.15s;
 }
 
+/* Login: outlined */
+.acc button:first-child {
+  background: transparent;
+  border: 1.5px solid var(--brand-primary);
+  color: var(--brand-primary);
+}
 
+.acc button:first-child:hover {
+  background: var(--brand-primary);
+  color: #fff;
+}
 
-
-
+/* Sign Up: filled */
+.acc button:last-child {
+  background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-light) 100%);
+  border: none;
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(34, 120, 50, 0.25);
+}
 
 .acc button:last-child:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
-/* Logged-in section */
+/* ─── Logged-in: Welcome / Logout bar ─── */
 .logout {
-  gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 16px 32px;
+  background: #fff;
+  border-bottom: 1px solid rgba(34, 120, 50, 0.12);
 }
 
 .logout span {
+  font-size: 14px;
+  color: green;
   font-weight: 600;
-  color: #374151;
+  background: transparent;
+  border:  1.5px green solid;
+  border-radius: 32px;
+  height: 50px;
+  width: 150px;
+  padding: 9px 22px;
+  cursor: pointer;
 }
 
 .logout button {
-  background: #ef4444;
-  color: white;
-  border: none;
+  padding: 9px 22px 10px 22px;
+  border-radius: 30px;
+  border: 1.5px solid var(--danger);
+  background: transparent;
+  color: var(--danger);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
 }
 
 .logout button:hover {
-  background: #dc2626;
-  transform: translateY(-2px);
+  background: var(--danger);
+  color: #fff;
 }
 
-/* Responsive */
+.logout span:hover {
+  background:green;
+  color: #fff;
+}
+/* ─── Content area ─── */
+.admin-content-area {
+  min-height: calc(100vh - 78px);
+  background: var(--brand-bg);
+  padding: 32px;
+}
+
+/* ─── Responsive ─── */
 @media (max-width: 600px) {
-  .account,
-  .logout {
+  .account {
+    padding: 16px 20px 0;
     justify-content: center;
-    padding: 1rem;
-  }
-
-  .acc {
-    width: 100%;
-    flex-direction: column;
-  }
-
-  .acc button,
-  .logout button {
-    width: 100%;
   }
 
   .logout {
     flex-direction: column;
+    gap: 10px;
     text-align: center;
+    padding: 16px 20px;
+  }
+
+  .admin-content-area {
+    padding: 20px;
   }
 }

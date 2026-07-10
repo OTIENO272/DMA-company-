@@ -43,7 +43,7 @@ const Admin = () => {
       
     </div>) : (
       <div className="logout">
-        <span>Welcome,{user.email}</span>
+        <span>Welcome{user.username}</span>
         <button onClick={handleLogOut}>Logout</button>
       </div>
     )}

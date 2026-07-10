@@ -25,13 +25,17 @@ const getJobDetails=async()=>{
    }
 }
 
-const login =async()=>{
+const loginApi =async({email,password})=>{
    try {
-    const user = await api.post('/auth/login')
+    const user = await api.post('/auth/login',{
+        email,password
+    })
     return user;
    } catch (error) {
-     console.log(error.response?.data?.message || error.message)
-     throw error
+       throw new Error(
+  error.response?.data?.error || "Something went wrong",
+  { cause: error }
+ );
    }
 }
 
@@ -50,4 +54,4 @@ const signupApi =async({username, email, password, confirmPassword})=>{
 }
 
 
-export {getJobs,getJobDetails,login,signupApi}
+export {getJobs,getJobDetails,loginApi,signupApi}

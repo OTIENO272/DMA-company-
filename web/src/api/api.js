@@ -32,6 +32,7 @@ const loginApi =async({email,password})=>{
     })
     return user.data;
    } catch (error) {
+   
        throw new Error(
   error.response?.data?.error || "Something went wrong",
   { cause: error }
@@ -53,5 +54,26 @@ const signupApi =async({username, email, password, confirmPassword})=>{
    }
 }
 
+const addNewJob =async(formData)=>{
+    
+    try {
+        const job = await api.post('/jobs/addJob',formData)
+        return job.data
+    } catch (error) {
+        throw new Error(
+            error.response?.data?.error ||'Something went wrong',{cause:error}
+        )
+    }
 
-export {getJobs,getJobDetails,loginApi,signupApi}
+}
+const deleteJobApi=async(jobId)=>{
+    try {
+        const res = await api.delete(`/jobs/deleteJob/${jobId}`)
+        return res.data
+    } catch (error) {
+         throw new Error(
+            error.response?.data?.error ||'Something went wrong',{cause:error}
+        )
+    }
+}
+export {getJobs,getJobDetails,loginApi,signupApi,addNewJob,deleteJobApi}

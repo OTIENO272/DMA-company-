@@ -15,9 +15,14 @@ const Login = () => {
     const {register,handleSubmit,formState:{errors,isSubmitting}} = useForm()
 
     const onSubmit =async(data)=>{
+
       
-        await login(data) 
+      const success=  await login(data) 
+      if (success) {
         await navigate('/admin/dashboard')
+        
+      }
+        
       
     }
       if (user) return <Navigate to="/admin/dashboard" replace />

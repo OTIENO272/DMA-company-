@@ -146,6 +146,30 @@
   min-height: 100vh;
   background: linear-gradient(160deg, #eaf6ec 0%, #dcf0e1 100%);
 }
+.delete-job {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  color: #d64545;
+  background: rgba(214, 69, 69, 0.08);
+  border: 1px solid rgba(214, 69, 69, 0.25);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, transform 0.18s;
+}
+
+.delete-job:hover {
+  background: #d64545;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.delete-job:active {
+  transform: scale(0.96);
+}
 
 /* ─── Auth prompt: logged-out state (Login / Sign Up) ─── */
 .auth-prompt {
@@ -230,6 +254,7 @@
     white-space: nowrap;
     border-radius: 24px;
   }
+  
 
   .content {
     padding: 22px;

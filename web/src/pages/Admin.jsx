@@ -23,10 +23,12 @@ const Admin = () => {
  const location =useLocation()
 
  useEffect(()=>{
-  if (location.pathname === '/admin' || location.pathname === '/admin/') {
-     navigate('/admin/login')
-  }
- },[location,navigate])
+   const isBareAdminRoot = location.pathname === '/admin' || location.pathname === '/admin/'
+   if(isBareAdminRoot){
+     navigate(user ? '/admin/dashboard':'/admin/login',{replace:true})
+   }
+  
+ },[location,navigate,user])
   return (
     <div>
 

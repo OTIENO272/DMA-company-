@@ -1,14 +1,27 @@
 import { useEffect, useState } from "react"
-import { getJobs } from "../api/api"
+import { deleteJobApi, getJobs } from "../api/api"
 import useAuthContext  from "../hooks/useAuthContext.jsx" //
 import '../styles/Admindashboad.css'
 import { RingLoader } from 'react-spinners'
-import {NavLink,Outlet} from 'react-router'
+import {NavLink,Outlet} from 'react-router-dom'
 const AdminDashboard = () => {
   const { user, isLoading: authLoading } = useAuthContext() 
   const [jobs, setJobs] = useState([])
   const [loadingJobs, setLoadingJobs] = useState(true)
 
+  const handleDeleteJob =async(jobId)=>{
+    try {
+     const deleted= await deleteJobApi(jobId)
+      setJobs((prev)=>prev.filter((jobs) =>jobs._id !==deleted._id))
+      
+      
+    } catch (error) {
+     console.log(error.message)
+    }
+  }
+const handleJobAdded = (newJob) => {
+    setJobs((prev) => [newJob, ...prev])
+  }
   useEffect(() => {
     const fetchJobs = async () => {
       try {
@@ -66,13 +79,14 @@ const AdminDashboard = () => {
                   <h3>{job.title}</h3>
                   <h2>{job.salary}</h2>
                   <p>{job.location}</p>
+                  <button onClick={()=>handleDeleteJob(job._id)} className="delete-job" >🗑️</button>
                 </div>
               ))
             )}
           </div>
 
           <div className="content">
-            <Outlet />
+            <Outlet context={{onJobAdded:handleJobAdded}} />
           </div>
         </div>
       </div>

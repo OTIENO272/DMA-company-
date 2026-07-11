@@ -15,8 +15,10 @@ const useLogin = () => {
             const data= await loginApi(formData)
            localStorage.setItem('user',JSON.stringify(data))
            dispatch({type:'LOGIN',payload:data})
+           return true;
         } catch (error) {
             setError(error.message)
+            return false;
         } finally{
             setIsLoading(false)
         }

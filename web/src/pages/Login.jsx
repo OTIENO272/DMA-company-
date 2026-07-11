@@ -2,19 +2,25 @@ import { Link, useNavigate } from "react-router"
 import '../styles/Login.css'
 import {useForm} from 'react-hook-form'
 import useLogin from "../hooks/useLogin.jsx"
+import useAuthContext  from "../hooks/useAuthContext"
+import { Navigate } from "react-router-dom"
+
 
 const Login = () => {
     const {login,error} =useLogin()
     const navigate = useNavigate()
+    const { user } = useAuthContext()
+  
 
     const {register,handleSubmit,formState:{errors,isSubmitting}} = useForm()
 
-    const onSubmit =async(email,password)=>{
+    const onSubmit =async(data)=>{
       
-        await login(email,password)
+        await login(data) 
         await navigate('/admin/dashboard')
       
     }
+      if (user) return <Navigate to="/admin/dashboard" replace />
   return (
     <div className="acc-login">
          <div className="job-login">
@@ -38,7 +44,7 @@ const Login = () => {
             {errors.password && (<span className="error">{errors.password.message}</span>) }
            <button disabled={isSubmitting}>Login</button>
            <div className="div">
-            <span>Don`t Have an Account ?</span> <Link to="/jobs/signup">SignUp</Link>
+            <span>Don`t Have an Account ?</span> <Link to="/admin/signup">SignUp</Link>
            </div>
 
         </form>

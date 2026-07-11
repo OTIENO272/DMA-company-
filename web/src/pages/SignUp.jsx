@@ -51,7 +51,7 @@ const SignUp = () => {
             <button disabled={isSubmitting} >Sign Up</button>
             <div className="div">
                 <p>Already Have an Account ?</p>
-                <NavLink to='/jobs/login'>Login</NavLink>
+                <NavLink to='/admin/login'>Login</NavLink>
             </div>
             {error && (
                  <span className="errors">{error}</span>

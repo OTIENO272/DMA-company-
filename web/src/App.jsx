@@ -20,6 +20,7 @@ import Admin from './pages/Admin'
 import AdminError from './components/AdminError.jsx'
 import AdminDashboard from './pages/AdminDashboard.jsx'
 import useAuthContext from './hooks/useAuthContext.jsx'
+import AddJob from './pages/Admin/AddJob.jsx'
 
 const App = () => {
   const {user} =useAuthContext()
@@ -31,8 +32,12 @@ const router =createBrowserRouter(
 
       <Route path='admin' element={<Admin />}  errorElement={<AdminError />}>
           <Route path='login' element={!user ? <Login /> : <Navigate to="/admin/dashboard" />}/>
-          <Route path='signup' element={<SignUp />}/>
-          <Route path='dashboard' element={<AdminDashboard />} />
+          <Route path='signup' element={!user ? <SignUp /> : <Navigate to="/admin/dashboard"/>}/>
+          
+          <Route path='dashboard' element={user ?<AdminDashboard /> : <Navigate to ="/admin/login" />} >
+            <Route path='addJobs' element={user ? <AddJob /> : <Navigate to="/admin/login"/>} />
+          </Route>
+          
        </Route>
       <Route path='about' element={<About />} />
       <Route path='contact' element={<ContactLayout />} >

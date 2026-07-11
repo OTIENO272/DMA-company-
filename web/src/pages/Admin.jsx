@@ -18,12 +18,7 @@ const Admin = () => {
     }
 
 
-  const Login=()=>{
-     navigate('/admin/login')
-   }
- const Signup=()=>{
-    navigate('/admin/signUp')
- }
+
 
  const location =useLocation()
 
@@ -37,9 +32,8 @@ const Admin = () => {
 
       {!user ? ( <div className="account">
         <div className="acc">
-        <button onClick={Login} >Login</button>
-        <button onClick={Signup} >Sign Up</button>
-      </div>
+       
+        </div>
       
     </div>) : (
       <div className="logout">

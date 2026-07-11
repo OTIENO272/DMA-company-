@@ -1,69 +1,83 @@
 import { useEffect, useState } from "react"
 import { getJobs } from "../api/api"
-import useAuthContext from "../hooks/useAuthContext"
-import { NavLink, Outlet } from "react-router"
+import useAuthContext  from "../hooks/useAuthContext.jsx" //
 import '../styles/Admindashboad.css'
-
-
+import { RingLoader } from 'react-spinners'
+import {NavLink,Outlet} from 'react-router'
 const AdminDashboard = () => {
-  const {user} =useAuthContext()
-  const  [jobs,setJobs]=useState([])
-  const [loadingJobs,setLoadingJobs] =useState(true)
+  const { user, isLoading: authLoading } = useAuthContext() 
+  const [jobs, setJobs] = useState([])
+  const [loadingJobs, setLoadingJobs] = useState(true)
 
-
-
-  useEffect(()=>{
-    const fetchJobs =async()=>{
+  useEffect(() => {
+    const fetchJobs = async () => {
       try {
-        const data =await getJobs()
-        setJobs(data ||[])
+        const data = await getJobs()
+        setJobs(data || [])
       } catch (error) {
-         console.error("Failed to fetch jobs:", error);
-      }finally{
+        console.error("Failed to fetch jobs:", error)
+      } finally {
         setLoadingJobs(false)
-
       }
     }
 
     fetchJobs()
-  },[])
-      if (!user) {
-    return <p>Loading...</p> 
+  }, [])
+
+  // still checking localStorage for an existing session — show spinner only
+  if (authLoading) {
+    return <RingLoader color="#36d76c" size={50} />
   }
- return (
-  <div className="dashboard">
-    <h2 className="dash-welcome">Welcome Back!</h2>
 
-    <div className="dashboard-body">
-      <div className="sidebar">
-        <NavLink to='/admin/overview' className={({isActive}) => isActive ? "link-active" : "lnk"}> 📊 Overview</NavLink>
-        <NavLink to='/admin/addJob' className={({isActive}) => isActive ? "link-active" : "lnk"}>➕ Add Job</NavLink>
-        <NavLink to='/admin/tracker' className={({isActive}) => isActive ? "link-active" : "lnk"}>👥 Applicants Tracker</NavLink>
+  // definitively logged out — show spinner NEVER here, just the real options
+  if (!user) {
+    return (
+      <div className="auth-prompt">
+        <NavLink to="/admin/login" className={({ isActive }) => isActive ? "btn active" : "btn"}>
+          Login
+        </NavLink>
+        <NavLink to="/admin/signup" className={({ isActive }) => isActive ? "btn active" : "btn"}>
+          Sign Up
+        </NavLink>
       </div>
+    )
+  }
 
-      <div className="main-content">
-        <div className="dash-overview">
-          {loadingJobs ? (
-            <p>Loading jobs..</p>
-          ) : jobs.length === 0 ? (
-            <p>No jobs Found</p>
-          ) : (
-            jobs.map((job) => (
-              <div className="job-card" key={job._id}>
-                <h3>{job.title}</h3>
-                <h2>{job.salary}</h2>
-                <p>{job.location}</p>
-              </div>
-            ))
-          )}
+  return (
+    <div className="dashboard">
+      <h2 className="dash-welcome">Welcome Back!</h2>
+
+      <div className="dashboard-body">
+        <div className="sidebar">
+          <NavLink to='/admin/dashboard' className={({ isActive }) => isActive ? "link-active" : "lnk"}> 📊 Overview</NavLink>
+          <NavLink to='/admin/dashboard/addJobs' className={({ isActive }) => isActive ? "link-active" : "lnk"}>➕ Add Job</NavLink>
+          <NavLink to='/admin/dashboard/tracker' className={({ isActive }) => isActive ? "link-active" : "lnk"}>👥 Applicants Tracker</NavLink>
         </div>
 
-        <div className="content">
-          <Outlet />
+        <div className="main-content">
+          <div className="dash-overview">
+            {loadingJobs ? (
+              <p>Loading jobs..</p>
+            ) : jobs.length === 0 ? (
+              <p>No jobs Found</p>
+            ) : (
+              jobs.map((job) => (
+                <div className="job-card" key={job._id}>
+                  <h3>{job.title}</h3>
+                  <h2>{job.salary}</h2>
+                  <p>{job.location}</p>
+                </div>
+              ))
+            )}
+          </div>
+
+          <div className="content">
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>
-  </div>
-)
+  )
 }
+
 export default AdminDashboard

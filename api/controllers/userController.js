@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 
 //tokenization
 const signToken= (_id)=>{
-  return  jwt.sign({_id},process.env.SECRET,{"expiresIn":"3d"})
+  return  jwt.sign({_id},process.env.SECRET,{"expiresIn":"15m"})
 }
 
 const userSignUp=async(req,res)=>{
@@ -15,7 +15,7 @@ const userSignUp=async(req,res)=>{
      //token creation
      const token = await signToken(user._id)
 
-     res.status(200).json({email,token})
+     res.status(200).json({email,username,token})
    } catch (error) {
     res.status(400).json({error:error.message})
     console.log(error.message);
@@ -33,6 +33,8 @@ const userLogin=async(req,res)=>{
       res.status(200).json({email,token})
     } catch (error) {
      res.status(400).json({error:error.message})
+      console.log(error.message);
+     
     }
 }
 

@@ -1,5 +1,5 @@
 import { useForm, Controller } from "react-hook-form"
-import { Outlet } from "react-router"
+import { Outlet, useOutletContext } from "react-router"
 import Select from 'react-select'
 import '../../styles/AddJob.css'
 import {addNewJob} from '../../api/api.js'
@@ -12,11 +12,15 @@ const AddJob = () => {
    { value: "Remote", label: "Remote" },
   ]
 
-  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm()
+  const {onJobAdded} = useOutletContext()
+
+  const { register, handleSubmit, control, reset,formState: { errors, isSubmitting } } = useForm()
 
   const onSubmit = async (data) => {
     
-    await addNewJob(data)
+   const newJob = await addNewJob(data)
+   onJobAdded(newJob)
+   reset()
    
   }
 

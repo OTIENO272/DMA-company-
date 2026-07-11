@@ -6,7 +6,7 @@ const createJob = async(req,res)=>{
         const {title,salary,type,location,summary } = req.body
 
         const job = await Job.create(req.body)
-        res.status(201).json({job})
+        res.status(201).json(job)
 
     } catch (error) {
         res.status(500).json({msg:'Internal server error',err:error.message})

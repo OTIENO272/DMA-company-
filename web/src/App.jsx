@@ -34,7 +34,7 @@ const router =createBrowserRouter(
           <Route path='login' element={!user ? <Login /> : <Navigate to="/admin/dashboard" />}/>
           <Route path='signup' element={!user ? <SignUp /> : <Navigate to="/admin/dashboard"/>}/>
           
-          <Route path='dashboard' element={user ?<AdminDashboard /> : <Navigate to ="/admin/login" />} >
+          <Route path='dashboard' element={!user ? <Login /> :<AdminDashboard /> } >
             <Route path='addJobs' element={user ? <AddJob /> : <Navigate to="/admin/login"/>} />
           </Route>
           

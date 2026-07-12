@@ -17,7 +17,7 @@ const requireAuth=async(req,res,next)=>{
         next()
     } catch (error) {
         console.log(error.message);
-        res.status(401).json({error:'Authorization required'})
+        res.status(403).json({error:'Forbidden Request'})
         
     }
 

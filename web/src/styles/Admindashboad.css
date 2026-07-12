@@ -81,6 +81,35 @@
   gap: 20px;
 }
 
+/* Center wrapper for the entire loading block */
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px; /* Gives it breathing room inside the container */
+  width: 100%;
+  gap: 16px; /* Perfect spacing between spinner and text */
+  margin: 40px auto;
+}
+
+/* Subtle animation and typography for the "Loading" text */
+.loader p {
+  color: #4a5568; /* Subtle, readable dark gray */
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin: 0;
+  animation: pulseText 1.5s ease-in-out infinite; /* Soft breathing effect */
+}
+
+/* Pulsing text effect to make the interface feel alive */
+@keyframes pulseText {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+
 .dash-overview > p {
   grid-column: 1 / -1;
   text-align: center;

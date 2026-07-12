@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { deleteJobApi, getJobs } from "../api/api"
 import useAuthContext  from "../hooks/useAuthContext.jsx" //
 import '../styles/Admindashboad.css'
-import { RingLoader } from 'react-spinners'
+import { RingLoader, MoonLoader} from 'react-spinners'
 import {NavLink,Outlet} from 'react-router-dom'
 const AdminDashboard = () => {
   const { user, isLoading: authLoading } = useAuthContext() 
@@ -39,7 +39,7 @@ const handleJobAdded = (newJob) => {
 
   // still checking localStorage for an existing session — show spinner only
   if (authLoading) {
-    return <RingLoader color="#36d76c" size={50} />
+    return <RingLoader color="#096d2a" size={50} />
   }
 
   // definitively logged out — show spinner NEVER here, just the real options
@@ -70,7 +70,10 @@ const handleJobAdded = (newJob) => {
         <div className="main-content">
           <div className="dash-overview">
             {loadingJobs ? (
-              <p>Loading jobs..</p>
+              <div className="loader">
+                <MoonLoader  color="#09a03c" size={50}/>
+              <p>Loading Jobs.</p></div>
+            
             ) : jobs.length === 0 ? (
               <p>No jobs Found</p>
             ) : (

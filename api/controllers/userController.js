@@ -6,6 +6,24 @@ const signToken= (_id)=>{
   return  jwt.sign({_id},process.env.SECRET,{"expiresIn":"15m"})
 }
 
+const signRefreshToken=(_id)=>{
+
+  return jwt.sign({_id},process.env.REFRESH_SECRET,{expiresIn:'3d'})
+
+}
+
+const sendRefreshToken =(res,refreshToken)=>{
+
+  res.cookie('refreshToken',refreshToken,{
+    httpOnly:true,
+    secure:process.env.NODE_ENV ==='production',
+    sameSite:'strict',
+    maxAge: 3 *24 *60 *60 *1000,
+    path:'/api/auth',
+  })
+
+}
+
 const userSignUp=async(req,res)=>{
    try {
     
@@ -13,9 +31,11 @@ const userSignUp=async(req,res)=>{
      const user = await User.signup(username,email,password,confirmPassword)
 
      //token creation
-     const token = await signToken(user._id)
+     const accessToken = await signToken(user._id)
+     const refreshToken  = await signRefreshToken(user._id)
 
-     res.status(200).json({email,username,token})
+     sendRefreshToken(res,refreshToken)
+     res.status(200).json({email,username,accessToken})
    } catch (error) {
     res.status(400).json({error:error.message})
     console.log(error.message);
@@ -28,9 +48,12 @@ const userLogin=async(req,res)=>{
         const {email,password} =req.body
         const user = await User.login(email,password)
          //token creation
-      const token = await signToken(user._id)
+      const accessToken = await signToken(user._id)
+      const refreshToken = await signRefreshToken(user._id)
+      
 
-      res.status(200).json({email,token})
+      sendRefreshToken(res,refreshToken)
+      res.status(200).json({email,accessToken})
     } catch (error) {
      res.status(400).json({error:error.message})
       console.log(error.message);
@@ -38,6 +61,29 @@ const userLogin=async(req,res)=>{
     }
 }
 
+const refreshAccessToken = async(req,res)=>{
+
+  const token = req.cookies?.refreshToken
+
+  if(!token){
+    return res.status(401).json({error:'No refresh token provided'})
+  }
+
+  try {
+    const {_id} = jwt.verify(token,process.env.REFRESH_SECRET)
+    const accessToken = await signToken(_id)
+     return   res.status(200).json({accessToken})
+    
+  } catch (error) {
+    return res.status(401).json({error:'Invalid or expired refresh token'})
+  }
+
+}
+
+const userLogout=(req,res)=>{
+  res.clearCookie('refreshToken')
+  res.status(200).json({message:'Logged out'})
+}
 
 
-export {userSignUp,userLogin}
+export {userSignUp,userLogin,userLogout,refreshAccessToken}

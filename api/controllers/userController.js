@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 
 //tokenization
 const signToken= (_id)=>{
-  return  jwt.sign({_id},process.env.SECRET,{"expiresIn":"5s"})
+  return  jwt.sign({_id},process.env.SECRET,{"expiresIn":"15m"})
 }
 
 const signRefreshToken=(_id)=>{

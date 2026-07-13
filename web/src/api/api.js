@@ -15,10 +15,13 @@ const getJobs = async()=>{
 
 }
 
-const getJobDetails=async()=>{
+const getJobDetails=async(_id)=>{
    try {
-    const res = await api.get('/jobs/getJob/:id')
+    const res = await api.get(`/jobs/getJob/${_id}`)
+     
     return res.data.job;
+   
+    
    } catch (error) {
     console.log(error.response?.data?.message || error.message)
         throw error;

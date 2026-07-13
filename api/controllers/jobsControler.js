@@ -34,7 +34,7 @@ const getJob=async(req,res)=>{
     try {
 
         const {_id} = req.params
-        const job = await Job.findOne({id:_id});
+        const job = await Job.findById(_id);
 
         if(!job){
             return res.status(404).json({message:"Job Not Found"})
@@ -51,7 +51,7 @@ const updateJob=async(req,res)=>{
     try {
          const {title,salary,type,location,summary} = req.body
         const {_id}=req.params
-        const job = await Job.findOne({id:_id});
+        const job = await Job.findById(_id);
           if(!job){
             return res.status(404).json({message:"Job Not Found"})
         }

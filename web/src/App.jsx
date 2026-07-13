@@ -53,8 +53,8 @@ const router =createBrowserRouter(
       <Route path='jobs' element={<JobsLayout />} errorElement={<Error />} >
      
         <Route  index element={<Jobs />} loader={jobsLoader}/>
-        <Route  path=':id' element={<JobDetails />} loader={jobDetailsLoader} />
-        <Route path=':id/apply'  element={<FormLink />}/>
+        <Route  path=':_id' element={<JobDetails />} loader={jobDetailsLoader} />
+        <Route path=':_id/apply'  element={<FormLink />}/>
      </Route>
      <Route  path='*' element={<NotFound />}/>
      

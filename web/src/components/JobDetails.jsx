@@ -1,5 +1,6 @@
 import { useLoaderData, useNavigate, useParams } from "react-router"
 import { getJobDetails} from "../api/api.js"
+// import useAuthContext from '../context/AuthContext'
 
 
 
@@ -7,12 +8,12 @@ import { getJobDetails} from "../api/api.js"
 
 const JobDetails = () => {
       const jobDetails= useLoaderData()
-      const {id}=useParams()
+      const {_id}=useParams()
       const navigate =useNavigate()
 
  const handleApply =()=>{
     
-   navigate(`/jobs/${id}/apply`,{
+   navigate(`/jobs/${_id}/apply`,{
       state:{position:jobDetails.title}
    })
     
@@ -34,9 +35,10 @@ const JobDetails = () => {
 }
 
 export default JobDetails
- export const jobDetailsLoader =async()=>{
+ export const jobDetailsLoader =async({params})=>{
 
-    const data = await getJobDetails()
+    const data = await getJobDetails(params._id)
+    console.log(data);
    
     return data;
 }

@@ -37,7 +37,7 @@ api.interceptors.response.use(
             } catch (rejectError) {
                 localStorage.removeItem('user')
                 window.location.href = '/admin/login'
-                return Promise.reject(rejectError)
+                return Promise.eject(rejectError)
             }
         
         }

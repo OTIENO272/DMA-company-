@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 
 //tokenization
 const signToken= (_id)=>{
-  return  jwt.sign({_id},process.env.SECRET,{"expiresIn":"15m"})
+  return  jwt.sign({_id},process.env.SECRET,{"expiresIn":"5s"})
 }
 
 const signRefreshToken=(_id)=>{
@@ -19,7 +19,7 @@ const sendRefreshToken =(res,refreshToken)=>{
     secure:process.env.NODE_ENV ==='production',
     sameSite:'strict',
     maxAge: 3 *24 *60 *60 *1000,
-    path:'/api/auth',
+  
   })
 
 }
@@ -81,7 +81,10 @@ const refreshAccessToken = async(req,res)=>{
 }
 
 const userLogout=(req,res)=>{
+  
   res.clearCookie('refreshToken')
+ 
+  
   res.status(200).json({message:'Logged out'})
 }
 

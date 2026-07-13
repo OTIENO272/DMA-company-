@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { Outlet, useLocation, useNavigate } from "react-router"
 import useAuthContext from "../hooks/useAuthContext.jsx"
 import '../styles/Admin.css'
+import api from "../api/axios.js"
 
 const Admin = () => {
   
@@ -9,8 +10,9 @@ const Admin = () => {
      const navigate = useNavigate()
 
      const handleLogOut=()=>{
-      localStorage.removeItem('user')
-      dispatch({type:'LOGOUT'})
+      api.post('/auth/logout')
+       localStorage.removeItem('user')
+       dispatch({type:'LOGOUT'})
 
         navigate('/admin/login')
         

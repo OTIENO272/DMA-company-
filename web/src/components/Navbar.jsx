@@ -1,57 +1,89 @@
-import { useState } from 'react'
-import Logo from '../assets/logo.svg'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import Logo from '../assets/logo.svg';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-  const navigate = useNavigate()
-  const [menuOpen, setMenuOpen] = useState(false)
+  const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const closeMenu = () => setMenuOpen(false)
+  const closeMenu = () => setMenuOpen(false);
 
-  const handleGetStarted = () => {
-    navigate('/contact', { replace: true })
-    closeMenu()
-  }
- const handleAdmin =()=>{
-  navigate('/admin')
- }
+  const handleAdmin = () => {
+    navigate('/admin');
+    closeMenu();
+  };
+
   return (
-    <div className='navbar'>
-      <img src={Logo} alt="logo" className='img' />
+    <div className="navbar">
+      <img src={Logo} alt="DMA Logo" className="img" />
 
-      {/* desktop nav */}
+      {/* Desktop Navigation */}
       <ul>
-        <NavLink to='/'><li>Home</li></NavLink>
-        <NavLink to='/products'><li>Products</li></NavLink>
-        <NavLink to='/about'><li>About</li></NavLink>
-        <NavLink to='/contact'><li>Contact</li></NavLink>
-        <NavLink to='/jobs'><li>Jobs</li></NavLink>
+        <NavLink to="/">
+          <li>Home</li>
+        </NavLink>
+
+        <NavLink to="/products">
+          <li>Products</li>
+        </NavLink>
+
+        <NavLink to="/about">
+          <li>About</li>
+        </NavLink>
+
+        <NavLink to="/contact">
+          <li>Contact</li>
+        </NavLink>
+
+        <NavLink to="/jobs">
+          <li>Jobs</li>
+        </NavLink>
       </ul>
 
-      {/* desktop button */}
-      {/* <button onClick={handleGetStarted}>Get Started</button> */}
-      <button className='admin' onClick={handleAdmin}>Admin</button>
+      {/* Desktop Admin Button */}
+      <button className="admin" onClick={handleAdmin}>
+        Admin
+      </button>
 
-      {/* hamburger — only visible on mobile via CSS */}
+      {/* Mobile Hamburger */}
       <button
         className={`hamburger ${menuOpen ? 'open' : ''}`}
         onClick={() => setMenuOpen(!menuOpen)}
-        aria-label="Toggle menu"
+        aria-label="Toggle navigation"
       >
-        <span /><span /><span />
+        <span />
+        <span />
+        <span />
       </button>
 
-      {/* mobile menu overlay */}
+      {/* Mobile Menu */}
       <ul className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
-        <NavLink to='/'        onClick={closeMenu}><li>Home</li></NavLink>
-        <NavLink to='/products'onClick={closeMenu}><li>Products</li></NavLink>
-        <NavLink to='/about'   onClick={closeMenu}><li>About</li></NavLink>
-        <NavLink to='/contact' onClick={closeMenu}><li>Contact</li></NavLink>
-        <NavLink to='/jobs'    onClick={closeMenu}><li>Jobs</li></NavLink>
-        <button onClick={handleGetStarted}>Get Started</button>
+        <NavLink to="/" onClick={closeMenu}>
+          <li>Home</li>
+        </NavLink>
+
+        <NavLink to="/products" onClick={closeMenu}>
+          <li>Products</li>
+        </NavLink>
+
+        <NavLink to="/about" onClick={closeMenu}>
+          <li>About</li>
+        </NavLink>
+
+        <NavLink to="/contact" onClick={closeMenu}>
+          <li>Contact</li>
+        </NavLink>
+
+        <NavLink to="/jobs" onClick={closeMenu}>
+          <li>Jobs</li>
+        </NavLink>
+
+        <button className="admin" onClick={handleAdmin}>
+          Admin
+        </button>
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

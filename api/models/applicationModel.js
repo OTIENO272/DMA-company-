@@ -25,7 +25,7 @@ const applicationSchema =mongoose.Schema({
         type:Number,
         required:true
     },
-    resume:{
+    resumeUrl:{
         type:String,
         required:true
     }

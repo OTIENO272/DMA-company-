@@ -3,6 +3,7 @@ import router from './routes/jobRoutes.js'
 import userRouter from './routes/userRoutes.js'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+import appRouter from './routes/applicantRoutes.js'
 
 const app = express()
 
@@ -17,6 +18,7 @@ app.use(cors(
 
 app.use(userRouter)
 app.use(router)
+app.use(appRouter)
 
 
 

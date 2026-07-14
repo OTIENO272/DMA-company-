@@ -7,13 +7,18 @@ import appRouter from './routes/applicantRoutes.js'
 
 const app = express()
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://your-project.vercel.app"
+];
 
 app.use(express.json())
 
 app.use(express.urlencoded({extended:false}))
 app.use(cookieParser())
 app.use(cors(
-   { origin:"http://localhost:5173",credentials:true}
+   { origin: allowedOrigins,
+     credentials:true}
 ))
 
 

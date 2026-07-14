@@ -9,7 +9,7 @@ const app = express()
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://your-project.vercel.app"
+  "https://dma-labs-irxq-three.vercel.app/"
 ];
 
 app.use(express.json())

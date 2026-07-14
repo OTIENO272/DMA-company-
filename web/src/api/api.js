@@ -79,4 +79,93 @@ const deleteJobApi=async(jobId)=>{
         )
     }
 }
-export {getJobs,getJobDetails,loginApi,signupApi,addNewJob,deleteJobApi}
+
+//submit application
+const submitApplication = async(formValues)=>{
+    try {
+
+        //preparing data,for file uploads
+
+        const formData = new FormData()
+        Object.entries(formValues).forEach(([key,value])=>{
+            formData.append(key,value)
+        })
+
+        //making network request
+
+        const res = await api.post('/applicants/sendApplication',formData,{
+            headers:{'Content-Type':'multipart/form-data'}
+        })
+
+        return res.data
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Something went wrong',{
+            cause:error
+        })
+    }
+
+}
+
+//application apis
+
+const getApplicants= async()=>{
+
+    try {
+        const res = await api.get('/applicants/getApplications')
+
+        return res.data
+
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'something went wrong',{
+            cause:error
+        })
+    }
+
+}
+
+const getApplicant = async(id)=>{
+    try {
+        
+        const res = await api.get(`/applicants/getApplication/${id}`)
+
+        return res.data
+    } catch (error) {
+           throw new Error(error.response?.data?.message || 'something went wrong',{
+            cause:error
+        })
+    }
+}
+
+const  updateApplicantStatus=async(id,status)=>{
+    try {
+        const res =await api.patch(`/applicants/updateStatus/${id}`,{status})
+        return res.data
+    } catch (error) {
+          throw new Error(error.response?.data?.message || 'Something went wrong',{cause:error})
+    }
+}
+
+const archiveApplicant=async(id)=>{
+
+    try {
+        const res = await api.delete(`/applicants/deleteApplicant/${id}`)
+        return res.data
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Something went wrong',{cause:error})
+    }
+
+}
+
+export {
+    getJobs,
+    getJobDetails,
+    loginApi,
+    signupApi,
+    addNewJob,
+    deleteJobApi,
+    submitApplication,
+    getApplicants,
+    getApplicant,
+    updateApplicantStatus,
+    archiveApplicant
+}

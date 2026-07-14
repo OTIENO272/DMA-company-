@@ -40,6 +40,7 @@ const getApplicant=async(req,res)=>{
         res.status(200).json(applicant)
         
     } catch (error) {
+    
         res.status(500).json({err:'Internal server Error!',error:error.message})
     }
 }
@@ -49,11 +50,19 @@ const updateApplicationStatus=async(req,res)=>{
         const {id} = req.params;
         const {status} = req.body
 
-        const updatedStatus = await Applicant.findByIdAndUpdate(id,{status}, { new: true })
+        const updatedStatus = await Applicant.findByIdAndUpdate(id,{status},  { returnDocument: 'after' })
 
+        if (!updatedStatus) {
+           return res.status(404).json({
+               message: "Applicant not found"
+            });
+}
+         
         res.status(200).json(updatedStatus)
         
     } catch (error) {
+        console.log(error.message);
+        
         res.status(500).json({err:'Internal server Error!',error:error.message})
     }
 }

@@ -19,13 +19,14 @@ const createApplication = async(req,res)=>{
 
         const resumeUrl = req.file?.path
 
+        
         if(!resumeUrl){
             return res.status(400).json({message:'Resume file is required'})
         }
 
         const application= await Applicant.create({fName,sName,email,number,position,experience,resumeUrl,skills,status})
 
-        
+
         res.status(201).json(application)
     } catch (error) {
        res.status(500).json({err:'Internal server Error!',error:error.message})

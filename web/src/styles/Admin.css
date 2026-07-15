@@ -11,6 +11,7 @@
 .acc {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .acc button {
@@ -56,17 +57,25 @@
   padding: 16px 32px;
   background: #fff;
   border-bottom: 1px solid rgba(34, 120, 50, 0.12);
+  flex-wrap: wrap;
 }
 
 .logout span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 14px;
   color: green;
   font-weight: 600;
   background: transparent;
-  border:  1.5px green solid;
+  border: 1.5px green solid;
   border-radius: 32px;
-  height: 50px;
-  width: 150px;
+  height: auto;
+  width: auto;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   padding: 9px 22px;
   cursor: pointer;
 }
@@ -89,9 +98,10 @@
 }
 
 .logout span:hover {
-  background:green;
+  background: green;
   color: #fff;
 }
+
 /* ─── Content area ─── */
 .admin-content-area {
   min-height: calc(100vh - 78px);
@@ -106,6 +116,17 @@
     justify-content: center;
   }
 
+  .acc {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .acc button {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+  }
+
   .logout {
     flex-direction: column;
     gap: 10px;
@@ -113,7 +134,30 @@
     padding: 16px 20px;
   }
 
+  .logout span {
+    max-width: 100%;
+  }
+
   .admin-content-area {
     padding: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .acc {
+    flex-direction: column;
+  }
+
+  .acc button {
+    width: 100%;
+  }
+
+  .logout span,
+  .logout button {
+    width: 100%;
+  }
+
+  .admin-content-area {
+    padding: 16px;
   }
 }

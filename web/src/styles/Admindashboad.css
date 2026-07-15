@@ -8,6 +8,7 @@
   background: linear-gradient(160deg, #eaf6ec 0%, #dcf0e1 100%);
   min-height: 100vh;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .dash-welcome {
@@ -40,6 +41,7 @@
   overflow-y: auto;
   border-radius: 24px;
   margin-right: 43px;
+  flex-shrink: 0;
 }
 
 .sidebar .lnk,
@@ -248,6 +250,21 @@
 }
 
 /* ─── Responsive ─── */
+
+/* Large tablet / small laptop: the fixed 380px right margin has no room to
+   breathe here, so scale it down before the full mobile stack kicks in */
+@media (max-width: 1300px) {
+  .dashboard {
+    margin-right: 160px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .dashboard {
+    margin-right: 0;
+  }
+}
+
 @media (max-width: 900px) {
   .dash-overview {
     grid-template-columns: repeat(2, 1fr);
@@ -260,6 +277,11 @@
     padding: 24px 20px 44px;
   }
 
+  .dash-welcome {
+    font-size: 32px;
+    margin-bottom: 28px;
+  }
+
   .dashboard-body {
     flex-direction: column;
     gap: 20px;
@@ -270,10 +292,12 @@
     width: 100%;
     height: auto;
     flex-direction: row;
+    gap: 10px;
     border-radius: 30px;
     padding: 8px;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
     overflow-x: auto;
+    margin-right: 0;
   }
 
   .sidebar .lnk,
@@ -283,7 +307,10 @@
     white-space: nowrap;
     border-radius: 24px;
   }
-  
+
+  .dash-overview {
+    gap: 14px;
+  }
 
   .content {
     padding: 22px;
@@ -295,7 +322,25 @@
 }
 
 @media (max-width: 480px) {
+  .dashboard {
+    padding: 18px 16px 36px;
+  }
+
+  .dash-welcome {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
   .dash-overview {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .content {
+    padding: 18px;
+  }
+
+  .job-card {
+    padding: 18px 16px;
   }
 }

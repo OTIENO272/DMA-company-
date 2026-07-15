@@ -36,7 +36,7 @@
   background: #fff;
   border-radius: 12px;
   border: 1px solid rgba(34, 120, 50, 0.15);
-  overflow: hidden;
+  overflow-x: auto;
 }
 
 .table-header,
@@ -45,6 +45,7 @@
   grid-template-columns: 1.4fr 1.2fr 1fr 1fr;
   padding: 12px 16px;
   align-items: center;
+  min-width: 520px;
 }
 
 .table-header {
@@ -168,4 +169,40 @@
   font-weight: 600;
   font-size: 13px;
   cursor: pointer;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .applicants-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .inspector-panel {
+    order: -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .applicants-controls {
+    flex-direction: column;
+  }
+
+  .applicants-controls select {
+    width: 100%;
+  }
+
+  .table-header,
+  .table-row {
+    min-width: 460px;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .inspector-panel {
+    padding: 16px;
+  }
+
+  .inspector-header h3 {
+    font-size: 15px;
+  }
 }

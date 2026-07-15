@@ -17,6 +17,7 @@
 .acc {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .acc button {
@@ -141,12 +142,31 @@
 }
 
 @media (max-width: 480px) {
+  .div {
+    padding: 24px 16px 36px;
+  }
+
+  .div > h2 {
+    font-size: 24px;
+  }
+
   .acc {
     width: 100%;
     justify-content: center;
   }
 
+  .acc button {
+    flex: 1 1 auto;
+    min-width: 110px;
+    text-align: center;
+  }
+
   .jobs {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .jobs a {
+    padding: 20px 16px;
   }
 }

@@ -55,6 +55,7 @@
     padding: 12px 14px;
     outline: none;
     width: 100%;
+    box-sizing: border-box;
     transition: border-color 0.18s, box-shadow 0.18s;
 
     &:focus {
@@ -67,7 +68,7 @@
   /* Dynamically style the input border color if followed directly by an error message */
   input:has(+ .error, + .errors) {
     border-color: var(--error, #dc3545);
-    
+
     &:focus {
       box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
     }
@@ -80,7 +81,7 @@
     font-size: 12px;
     color: var(--error, #dc3545);
     margin-top: 6px;
-    min-height: 18px; 
+    min-height: 18px;
     transition: opacity 0.18s ease-in-out;
   }
 
@@ -92,7 +93,7 @@
   }
 
   button {
-    margin-top: 22px; /* Reduced from 28px to beautifully balance the reserved error space above */
+    margin-top: 22px;
     font-size: 15px;
     font-weight: 600;
     color: #fff;
@@ -142,9 +143,32 @@
 }
 
 /* ─── Responsive ─── */
-@media (width <= 480px) {
+@media (width <= 600px) {
+  .acc-login {
+    padding: 24px 16px;
+  }
+
   .job-login {
     padding: 32px 24px;
     border-radius: 12px;
+  }
+}
+
+@media (width <= 400px) {
+  .job-login {
+    padding: 28px 18px;
+
+    h2 {
+      font-size: 20px;
+    }
+
+    input {
+      font-size: 16px; /* prevents iOS Safari auto-zoom on focus */
+    }
+
+    button {
+      font-size: 14px;
+      padding: 12px;
+    }
   }
 }

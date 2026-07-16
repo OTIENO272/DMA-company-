@@ -1,4 +1,4 @@
- # DMA Labs
+  # DMA Labs
 
 A full-stack MERN platform for a tech services company — showcasing services like software engineering and networking, connecting customers with developers, and running the company's internal hiring pipeline.
 

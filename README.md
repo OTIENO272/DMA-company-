@@ -1,6 +1,6 @@
   # DMA Labs
 
-A full-stack MERN platform for a tech services company — showcasing services like software engineering and networking, connecting customers with developers, and running the company's internal hiring pipeline.
+A full-stack MERN platform for a tech services company — showcasing services like software engineering networking and any tech-releted task, connecting customers with developers, and running the company's internal hiring pipeline.
 
 **Live app:** [dma-labs-irxq-three.vercel.app](https://dma-labs-irxq-three.vercel.app/)
 

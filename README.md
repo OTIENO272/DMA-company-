@@ -17,7 +17,7 @@ DMA Labs is a company site with two sides:
 - **Admin side** — authenticated admins can post/edit/delete job listings, review incoming applications, update candidate status, and archive profiles.
 
 ---
-
+ 
 ## Tech Stack
 
 **Frontend**

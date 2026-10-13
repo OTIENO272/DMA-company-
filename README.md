@@ -1,12 +1,15 @@
-# DMA Labs
 
-A full-stack MERN platform for a tech services company — showcasing services like software engineering and networking, connecting customers with developers, and running the company's internal hiring pipeline.
+ # DMA Labs</>
+  
+  
+A full-stack MERN platform for a tech services company — showcasing services like software engineering networking and any tech-releted task, connecting customers with developers, and running the company's internal hiring pipeline.
 
 **Live app:** [dma-labs-irxq-three.vercel.app](https://dma-labs-irxq-three.vercel.app/)
 
+
 ---
 
-## Overview
+## Overview >>
 
 DMA Labs is a company site with two sides:
 
@@ -14,7 +17,7 @@ DMA Labs is a company site with two sides:
 - **Admin side** — authenticated admins can post/edit/delete job listings, review incoming applications, update candidate status, and archive profiles.
 
 ---
-
+ 
 ## Tech Stack
 
 **Frontend**

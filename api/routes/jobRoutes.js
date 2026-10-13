@@ -4,6 +4,7 @@ import requireAuth from '../middleware/requireAuth.js'
 
 
 const router = express.Router()
+//APIs should be resource-centered
 
 router.get('/api/jobs/getJob/:_id',getJob)
 router.get('/api/jobs/getJobs',getJobs)
